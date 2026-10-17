@@ -1,0 +1,22 @@
+{
+ "img/hero.jpg": {
+  "tool": "higgsfield",
+  "prompt": "forest festival stage and gate by a river at twilight (job b5aeb0a4) gpt_image_2_5"
+ },
+ "snd/scan.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "wristband scan beep and gate (flow 2UA09OaZQMbsTK0zdoXZ)"
+ },
+ "snd/lantern.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "lantern chime (flow 2UA09OaZQMbsTK0zdoXZ)"
+ },
+ "snd/cheer.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "forest festival crowd cheer (flow 2UA09OaZQMbsTK0zdoXZ)"
+ },
+ "snd/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "melodic bass sunset loop, eleven_music_v2_5 (flow 2UA09OaZQMbsTK0zdoXZ)"
+ }
+}
