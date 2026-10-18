@@ -1,7 +1,7 @@
 {
  "img/hero.jpg": {
   "tool": "higgsfield",
-  "prompt": "forest festival stage and gate by a river at twilight (job b5aeb0a4) gpt_image_2_5"
+  "prompt": "magical moonlit forest festival stage with lanterns, lasers, river and wooden gate (job 5449eaf3) gpt_image_2_5"
  },
  "snd/scan.mp3": {
   "tool": "elevenlabs",
@@ -18,5 +18,25 @@
  "snd/bed.mp3": {
   "tool": "elevenlabs",
   "prompt": "melodic bass sunset loop, eleven_music_v2_5 (flow 2UA09OaZQMbsTK0zdoXZ)"
+ },
+ "snd/pun.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "magical shimmer sweep and crowd woo (flow asxf9jU5dy8VJZj4GTmj)"
+ },
+ "snd/howl.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "friendly wolf howl and friends howling back (flow asxf9jU5dy8VJZj4GTmj)"
+ },
+ "snd/memory.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "warm lantern chime over distant Brooklyn night ambience (flow asxf9jU5dy8VJZj4GTmj)"
+ },
+ "snd/stars.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "twinkling star tones connecting (flow asxf9jU5dy8VJZj4GTmj)"
+ },
+ "snd/stamp.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "rubber stamp thunk and triumphant swell (flow asxf9jU5dy8VJZj4GTmj)"
  }
 }

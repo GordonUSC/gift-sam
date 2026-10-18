@@ -2,82 +2,190 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- STYLE: Forest festival gate at twilight (cedar amber and river teal, Cinzel caps with Nunito) | WHY: Gordon has been calling him "Sam SAMbhala!" and Sam answered "We WILL make it to Shambhala", so the gift is the gate he walks through: scan in, light the lanterns, the forest wakes up | ALT: A ticket countdown clock, rejected as a reminder instead of a welcome -->
+<!-- STYLE: Moonlit forest festival, lantern amber and laser teal-magenta over a river (Cinzel caps with Nunito, firefly particles) | WHY: Gordon's pun "Sam SAMbhala!" and Sam's "We WILL make it to Shambhala. Hopefully next year." The gift is his gate in: scan in, light the forest, then five delights from his own festival life, ending on a promise stamped on his wristband with a real countdown to Shambhala 2027 | ALT: A plain ticket countdown, rejected as a reminder instead of a welcome -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SAMbhala</title>
-<meta name="description" content="A forest gate for Sam.">
+<meta name="description" content="A forest gate for Sam, and the road to Shambhala 2027.">
 <meta property="og:title" content="SAMbhala, for Sam">
 <meta property="og:image" content="https://gordonusc.github.io/gift-sam/img/hero.jpg">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Nunito:wght@600;800&display=swap">
 <style>
-:root{--amber:#ffc56b;--teal:#5fe3d0;color-scheme:dark}
+:root{--amber:#ffc56b;--teal:#5fe3d0;--pink:#ff6fd8;color-scheme:dark}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#071214;color:#fff8ea;font:15px/1.45 Nunito,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
+html,body{margin:0;height:100%;background:#060b18;color:#fff8ea;font:15px/1.45 Nunito,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:none}
 .stage{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100vw,calc(100svh*9/16));overflow:hidden}
-.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.7);transition:filter 1.6s}
-.open .bg{filter:brightness(.8) saturate(1)}
-.done .bg{filter:none}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.85);transition:filter 1.6s}
+.open .bg{filter:brightness(.88) saturate(1.05)}
+.done .bg{filter:brightness(1.05) saturate(1.2)}
+.glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 55% 45%,#ff6fd833,transparent 55%),radial-gradient(ellipse at 50% 70%,#5fe3d022,transparent 60%);opacity:0;transition:opacity 1.6s;mix-blend-mode:screen}
+.done .glow{opacity:1;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.6}}
 canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.top{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18px);text-align:center;padding:0 18px;text-shadow:0 2px 14px #000;pointer-events:none}
+.top{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 16px);text-align:center;padding:10px 18px;text-shadow:0 2px 14px #000;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,#0009,transparent 70%)}
 .top small{font-weight:800;font-size:11px;letter-spacing:.3em;color:var(--teal)}
-.top h1{font:900 clamp(34px,11vw,52px)/1.05 Cinzel,Georgia,serif;margin:6px 0;color:var(--amber);letter-spacing:.04em}
+.top h1{font:900 clamp(34px,11vw,52px)/1.05 Cinzel,Georgia,serif;margin:6px 0;color:var(--amber);letter-spacing:.04em;pointer-events:auto}
+.top h1 span{display:inline-block;transition:color .3s,text-shadow .3s,transform .3s}
+.top h1 span.on{color:#fff;text-shadow:0 0 18px var(--pink),0 0 34px var(--amber);transform:translateY(-4px)}
 .top p{margin:0 auto;max-width:30ch}
-.scanner{position:absolute;left:50%;top:40%;width:92px;height:92px;margin-left:-46px;border-radius:50%;border:3px dashed var(--teal);display:grid;place-items:center;font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--teal);background:#07121499;transition:all .4s}
-.scanner.ok{border-style:solid;background:#5fe3d044;box-shadow:0 0 30px var(--teal);color:#fff}
-.band{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 70px);width:150px;height:34px;margin-left:-75px;border-radius:17px;background:linear-gradient(90deg,#ff6fb5,#ffc56b,#5fe3d0);color:#071214;font-weight:800;font-size:13px;letter-spacing:.1em;display:grid;place-items:center;box-shadow:0 6px 20px #000a;cursor:grab;touch-action:none}
+.scanner{position:absolute;left:46%;top:59%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:3px dashed var(--teal);display:grid;place-items:center;font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--teal);background:#06121499;text-align:center;transition:all .4s;animation:ping 1.6s ease-in-out infinite}
+@keyframes ping{50%{box-shadow:0 0 0 10px #5fe3d022}}
+.scanner.ok{border-style:solid;background:#5fe3d044;box-shadow:0 0 34px var(--teal);color:#fff;animation:none}
+.band{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 74px);width:156px;height:36px;margin-left:-78px;border-radius:18px;background:linear-gradient(90deg,#ff6fd8,#ffc56b,#5fe3d0);color:#071214;font-weight:800;font-size:13px;letter-spacing:.1em;display:grid;place-items:center;box-shadow:0 6px 22px #000a,0 0 18px #ffc56b88;cursor:grab;touch-action:none;z-index:4}
 .band[hidden]{display:none}
-.lan{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;background:radial-gradient(circle,#ffc56b55,#ffc56b00 70%);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s}
+.lan{position:absolute;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;border:0;background:radial-gradient(circle,#ffc56b66,#ffc56b00 70%);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .6s}
 .open .lan{opacity:1;pointer-events:auto;animation:bob 2.4s ease-in-out infinite}
-.lan.lit{background:radial-gradient(circle,#fff6d0,#ffc56b 40%,#ffc56b00 72%);animation:none;pointer-events:none}
-@keyframes bob{50%{transform:translateY(-6px)}}
-.hint{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);text-align:center;font-weight:800;font-size:12px;letter-spacing:.2em;color:var(--teal);text-shadow:0 2px 8px #000;pointer-events:none}
-.end{position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 40px);text-align:center;padding:16px;border-radius:14px;background:#071214e6;border:2px solid var(--amber);opacity:0;transition:opacity .9s;pointer-events:none}
-.end.on{opacity:1}
-.end h2{font:900 28px/1.05 Cinzel,serif;margin:0 0 6px;color:var(--amber)}
-.foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);text-align:center;font-size:11px;opacity:.7;pointer-events:none}
+.lan.lit{background:radial-gradient(circle,#fff6d0,#ffc56b 40%,#ffc56b00 72%);animation:none;pointer-events:none;box-shadow:0 0 40px #ffc56baa}
+@keyframes bob{50%{transform:scale(1.15)}}
+.hint{position:absolute;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 30px);text-align:center;font-weight:800;font-size:12px;letter-spacing:.16em;color:var(--teal);text-shadow:0 2px 8px #000;pointer-events:none}
+.dots{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 54px);display:flex;justify-content:center;gap:10px;opacity:0;transition:opacity .6s;pointer-events:none}
+.dots.on{opacity:1}
+.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--amber);background:transparent;transition:background .4s,box-shadow .4s}
+.dots i.got{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.hot{position:absolute;border-radius:50%;border:0;background:transparent;cursor:pointer;pointer-events:none}
+.hot.ready{pointer-events:auto;animation:invite 1.4s ease-in-out infinite}
+@keyframes invite{50%{box-shadow:0 0 0 10px #ffffff22,0 0 30px #ffffff55}}
+#moon{left:74%;top:9%;width:84px;height:84px;margin:-42px 0 0 -42px}
+#moon.lit{box-shadow:0 0 60px 20px #e8f2ffcc;animation:none}
+.memlan{position:absolute;left:50%;bottom:-80px;width:64px;height:84px;margin-left:-32px;border:0;border-radius:40% 40% 46% 46%;background:radial-gradient(circle at 50% 45%,#fff6d0,#ffb347 45%,#c2410c 100%);box-shadow:0 0 40px #ffb347;cursor:pointer;transition:bottom 2.6s ease-out;pointer-events:none}
+.memlan.up{bottom:42%;pointer-events:auto;animation:invite 1.4s ease-in-out infinite}
+.memlan.opened{animation:none;opacity:.9}
+.star{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border:0;border-radius:50%;background:radial-gradient(circle,#fff,#bfe9ff 30%,transparent 65%);opacity:0;pointer-events:none;transition:opacity .5s}
+.star.show{opacity:.7;pointer-events:auto;animation:twinkle 1.2s ease-in-out infinite}
+.star.got{opacity:1;animation:none;box-shadow:0 0 24px #bfe9ff}
+@keyframes twinkle{50%{transform:scale(1.3)}}
+.slabel{position:absolute;transform:translate(-50%,14px);font:800 11px Nunito,sans-serif;letter-spacing:.08em;color:#e8f6ff;text-shadow:0 0 10px #000,0 0 6px #5fe3d0;white-space:nowrap;opacity:0;transition:opacity .5s;pointer-events:none}
+.slabel.on{opacity:1}
+.card{position:absolute;left:16px;right:16px;top:60%;padding:14px 16px;text-align:center;border-radius:14px;background:#06121ee8;border:2px solid var(--teal);opacity:0;transform:translateY(8px);transition:all .5s;pointer-events:none;z-index:5}
+.card.on{opacity:1;transform:none}
+.card b{display:block;font:900 20px/1.15 Cinzel,serif;color:var(--amber);margin-bottom:4px}
+.promise{position:absolute;left:50%;top:52%;width:240px;margin-left:-120px;text-align:center;opacity:0;transition:opacity .6s;pointer-events:none;z-index:4}
+.promise.on{opacity:1;pointer-events:auto}
+.promise .wb{height:42px;border-radius:21px;background:linear-gradient(90deg,#ff6fd8,#ffc56b,#5fe3d0);color:#071214;font-weight:800;letter-spacing:.08em;display:grid;place-items:center;position:relative;box-shadow:0 0 22px #ffc56b88}
+.promise .stampmark{position:absolute;right:-8px;top:-18px;padding:4px 8px;border:3px solid #d61f69;color:#d61f69;background:#fff8;font:900 12px Cinzel,serif;border-radius:6px;transform:rotate(-12deg) scale(2.4);opacity:0;transition:all .35s cubic-bezier(.3,1.6,.5,1)}
+.promise.stamped .stampmark{opacity:1;transform:rotate(-12deg) scale(1)}
+.promise button{margin-top:12px;padding:12px 20px;border-radius:12px;border:2px solid var(--amber);background:#06121ecc;color:var(--amber);font:800 14px Nunito,sans-serif;letter-spacing:.08em;cursor:pointer}
+.promise.stamped button{display:none}
+.end{position:absolute;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 26px);text-align:center;padding:16px 16px 14px;border-radius:14px;background:#06121ef0;border:2px solid var(--amber);opacity:0;transition:opacity .9s;pointer-events:none;z-index:6}
+.end.on{opacity:1;pointer-events:auto}
+.end h2{font:900 26px/1.05 Cinzel,serif;margin:0 0 6px;color:var(--amber)}
+.count{font:900 34px/1 Cinzel,serif;color:#fff;text-shadow:0 0 18px var(--pink);margin:6px 0 2px}
+.end small{display:block;color:var(--teal);font-weight:800;letter-spacing:.1em;font-size:11px}
+.end ul{list-style:none;margin:10px auto 6px;padding:0;max-width:30ch;text-align:left;font-size:13.5px}
+.end li{margin:4px 0}
+.end li:before{content:"○ ";color:var(--teal)}
+.end li.done:before{content:"● ";color:var(--amber)}
+.foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 6px);text-align:center;font-size:11px;opacity:.75;pointer-events:none;z-index:7}
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
-  <img class="bg" src="img/hero.jpg" alt="A forest music festival stage glowing between cedars beside a river at twilight, with a wooden entrance gate">
+  <img class="bg" src="img/hero.jpg" alt="A forest music festival at night: paper lanterns in towering trees, teal and magenta lasers over a glowing stage, a full moon over the mountains, a river, and a wooden welcome gate">
+  <div class="glow"></div>
   <canvas id="c"></canvas>
-  <div class="top"><small>FOR SAM</small><h1>SAMbhala</h1><p>You said you WILL make it. Here's your gate. Drag your wristband to the scanner, then light the forest.</p></div>
+  <div class="top"><small>FOR SAM</small><h1 id="title"><span>S</span><span>A</span><span>M</span><span>b</span><span>h</span><span>a</span><span>l</span><span>a</span></h1><p id="sub">You said you WILL make it. Here's your gate. Drag your wristband to the scanner, then light the forest.</p></div>
   <div class="scanner" id="scan">SCAN<br>HERE</div>
-  <button class="lan" style="left:14%;top:30%" type="button" aria-label="lantern"></button>
-  <button class="lan" style="left:84%;top:27%" type="button" aria-label="lantern"></button>
-  <button class="lan" style="left:22%;top:56%" type="button" aria-label="lantern"></button>
-  <button class="lan" style="left:78%;top:54%" type="button" aria-label="lantern"></button>
-  <button class="lan" style="left:40%;top:68%" type="button" aria-label="lantern"></button>
-  <button class="lan" style="left:62%;top:70%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:4%;top:10%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:34%;top:5%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:22.5%;top:24%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:95%;top:24.5%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:82%;top:29.5%" type="button" aria-label="lantern"></button>
+  <button class="lan" style="left:10.5%;top:18%" type="button" aria-label="lantern"></button>
+  <button class="hot" id="moon" type="button" aria-label="moon"></button>
+  <button class="memlan" id="memlan" type="button" aria-label="memory lantern"></button>
+  <button class="star" style="left:22%;top:34%" data-n="Wolfpack West" type="button" aria-label="star"></button>
+  <button class="star" style="left:42%;top:29%" data-n="Coachella Fam" type="button" aria-label="star"></button>
+  <button class="star" style="left:60%;top:35%" data-n="Birthday / EDCO" type="button" aria-label="star"></button>
+  <button class="star" style="left:70%;top:41%" data-n="RL Grime Brooklyn Mirage" type="button" aria-label="star"></button>
+  <div id="labels"></div>
+  <div class="promise" id="promise"><div class="wb">SAM · ALL ACCESS<span class="stampmark">WE WILL MAKE IT</span></div><button type="button" id="stampbtn">STAMP THE PROMISE</button></div>
+  <div class="card" id="card"></div>
   <div class="band" id="band" draggable="false">SAM · ALL ACCESS</div>
-  <div class="hint" id="hint">DRAG THE WRISTBAND UP</div>
-  <div class="end" id="end"><h2>Welcome home, Sam</h2>The river, the trees, the bass at sunset. Gordon can't wait to stand under these lanterns with you next summer.</div>
+  <div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="hint" id="hint">DRAG THE WRISTBAND TO THE GATE</div>
+  <div class="end" id="end"><h2>Welcome home, Sam</h2>
+    <div class="count" id="count">Shambhala 2027</div>
+    <small>JULY 23 TO 26, 2027 · SALMO RIVER RANCH, BC</small>
+    <ul>
+      <li class="done">Join the Facebook groups (you already did)</li>
+      <li>Plan your journey to the ranch</li>
+      <li>Pack for a riverside farm in the mountains</li>
+      <li>Save a spot under the lanterns for Gordon</li>
+    </ul>
+    Gordon loves you, and he can't wait to stand in this forest with you.
+  </div>
   <div class="foot">made by Darby, Gordon's AI assistant, with love from Gordon</div>
 </div>
 <script>
-// ElevenLabs sound design: wristband scan and gate, lantern chime, forest crowd, melodic bass bed. Code only mixes.
-const SND=['scan','lantern','cheer','bed'];
-let ac=null, master=null, bufs={};
+// ElevenLabs sound design: scan + gate, lantern chime, crowd cheer, melodic bass bed, plus five delight cues (pun sparkle, wolf howl, Williamsburg lantern, constellation, promise stamp). Code only mixes.
+const SND=['scan','lantern','cheer','bed','pun','howl','memory','stars','stamp'];
+let ac=null, master=null, bufs={}, bed=null;
 function audio(){ if(!ac){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); master=ac.createGain(); master.gain.value=.9; master.connect(ac.destination); SND.forEach(load);}catch(e){} } if(ac&&ac.state==='suspended') ac.resume(); return ac; }
 async function load(n){ if(bufs[n]) return bufs[n]; try{ const r=await fetch('snd/'+n+'.mp3'); const a=await r.arrayBuffer(); bufs[n]=await new Promise((ok,no)=>ac.decodeAudioData(a,ok,no)); }catch(e){} return bufs[n]; }
 async function play(n,vol=1,loop=false,rate=1){ if(!audio()) return null; const b=await load(n); if(!b) return null; const s=ac.createBufferSource(), g=ac.createGain(); s.buffer=b; s.loop=loop; s.playbackRate.value=rate; g.gain.value=vol; s.connect(g).connect(master); s.start(); return {s,g}; }
-const $=s=>document.querySelector(s), stage=$('#stage'), band=$('#band'), scan=$('#scan');
+function duck(v){ if(bed&&ac) bed.g.gain.setTargetAtTime(v,ac.currentTime,.3); }
+const $=s=>document.querySelector(s), stage=$('#stage'), band=$('#band'), scan=$('#scan'), hint=$('#hint');
 const c=$('#c'), x=c.getContext('2d'), D=Math.min(devicePixelRatio||1,2);
 function size(){ c.width=c.clientWidth*D; c.height=c.clientHeight*D; } size(); addEventListener('resize',size);
-let sparks=[], drag=null, lit=0, opened=false;
+let sparks=[], flies=[], lines=[], drag=null, lit=0, opened=false, step=0;
+for(let i=0;i<46;i++) flies.push({u:(i*37%100)/100,v:.35+(i*53%60)/100,ph:i*.7,sp:.2+(i%5)*.08});
+function center(el){ const r=el.getBoundingClientRect(), s=c.getBoundingClientRect(); return [(r.left+r.width/2-s.left)*D,(r.top+r.height/2-s.top)*D]; }
 function burst(px,py,n,col){ for(let i=0;i<n;i++){ const a=i/n*Math.PI*2; sparks.push({x:px,y:py,vx:Math.cos(a)*(1+i%3)*D,vy:Math.sin(a)*(1+i%3)*D-1.4*D,a:1,c:col[i%col.length]}); } }
-band.addEventListener('dragstart',e=>e.preventDefault()); band.addEventListener('pointerdown',e=>{ e.preventDefault(); audio(); band.setPointerCapture(e.pointerId); const r=band.getBoundingClientRect(); drag={dx:e.clientX-r.left,dy:e.clientY-r.top}; });
-addEventListener('pointermove',e=>{ if(!drag) return; e.preventDefault(); const s=stage.getBoundingClientRect(); band.style.left=(e.clientX-s.left-drag.dx+75)+'px'; band.style.top=(e.clientY-s.top-drag.dy)+'px'; band.style.bottom='auto'; });
+function card(title,body,ms=3200){ const k=$('#card'); k.innerHTML='<b>'+title+'</b>'+body; k.classList.add('on'); clearTimeout(card.t); card.t=setTimeout(()=>k.classList.remove('on'),ms); }
+// core: wristband to gate
+band.addEventListener('dragstart',e=>e.preventDefault());
+band.addEventListener('pointerdown',e=>{ e.preventDefault(); audio(); band.setPointerCapture(e.pointerId); const r=band.getBoundingClientRect(); drag={dx:e.clientX-r.left,dy:e.clientY-r.top}; });
+addEventListener('pointermove',e=>{ if(!drag) return; e.preventDefault(); const s=stage.getBoundingClientRect(); band.style.left=(e.clientX-s.left-drag.dx+78)+'px'; band.style.top=(e.clientY-s.top-drag.dy)+'px'; band.style.bottom='auto'; });
 addEventListener('pointerup',e=>{ if(!drag) return; drag=null; const a=band.getBoundingClientRect(), b=scan.getBoundingClientRect();
-  const hit=Math.hypot((a.left+a.width/2)-(b.left+b.width/2),(a.top+a.height/2)-(b.top+b.height/2))<b.width; if(hit) openGate(); else { band.style.left=''; band.style.top=''; band.style.bottom=''; } });
-function openGate(){ if(opened) return; opened=true; play('scan',.9); scan.classList.add('ok'); scan.innerHTML='WELCOME<br>SAM'; band.hidden=true; stage.classList.add('open'); $('#hint').textContent='TAP ALL SIX LANTERNS';
-  const r=scan.getBoundingClientRect(), s=c.getBoundingClientRect(); burst((r.left+r.width/2-s.left)*D,(r.top+r.height/2-s.top)*D,30,['#5fe3d0','#ffc56b','#ff6fb5']); }
+  const hit=Math.hypot((a.left+a.width/2)-(b.left+b.width/2),(a.top+a.height/2)-(b.top+b.height/2))<b.width*1.1; if(hit) openGate(); else { band.style.left=''; band.style.top=''; band.style.bottom=''; } });
+function openGate(){ if(opened) return; opened=true; play('scan',.9); scan.classList.add('ok'); scan.innerHTML='WELCOME<br>SAM'; band.hidden=true; stage.classList.add('open'); hint.textContent='TAP ALL SIX GLOWING LANTERNS'; $('#sub').textContent='You\'re in. Now light the forest.';
+  const [px,py]=center(scan); burst(px,py,36,['#5fe3d0','#ffc56b','#ff6fd8']); }
 document.querySelectorAll('.lan').forEach(l=>l.addEventListener('click',()=>{ if(l.classList.contains('lit')) return; audio(); l.classList.add('lit'); lit++; play('lantern',.8,false,1+lit*.06);
-  const r=l.getBoundingClientRect(), s=c.getBoundingClientRect(); burst((r.left+r.width/2-s.left)*D,(r.top+r.height/2-s.top)*D,16,['#ffc56b','#fff6d0']);
-  if(lit===6){ $('#hint').style.display='none'; stage.classList.add('done'); play('cheer',.8); setTimeout(()=>play('bed',.55,true),900); setTimeout(()=>$('#end').classList.add('on'),700); for(let k=0;k<5;k++) setTimeout(()=>burst(c.width*(.2+.15*k),c.height*.3,24,['#ffc56b','#5fe3d0','#ff6fb5']),k*300); } }));
-(function loop(){ x.clearRect(0,0,c.width,c.height); sparks.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=.03*D; p.a-=.012; x.globalAlpha=Math.max(p.a,0); x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,2.4*D,0,7); x.fill(); }); x.globalAlpha=1; sparks=sparks.filter(p=>p.a>0); requestAnimationFrame(loop); })();
+  const [px,py]=center(l); burst(px,py,18,['#ffc56b','#fff6d0']);
+  if(lit===6){ stage.classList.add('done'); play('cheer',.8); setTimeout(()=>play('bed',.45,true).then(h=>bed=h),900); scan.style.opacity='0'; for(let k=0;k<5;k++) setTimeout(()=>burst(c.width*(.2+.15*k),c.height*.3,26,['#ffc56b','#5fe3d0','#ff6fd8']),k*300);
+    $('#sub').textContent='Five little delights are waiting, just for you.'; setTimeout(()=>{ $('#dots').classList.add('on'); next(); },1400); } }));
+// five delights, unlocked in sequence
+function got(){ const d=document.querySelectorAll('.dots i'); d[step-1].classList.add('got'); }
+function next(){ step++; const t=$('#title');
+  if(step===1){ hint.textContent='DELIGHT 1 OF 5 · TAP YOUR NAME UP TOP'; t.classList.add('hot','ready'); t.style.position='relative'; }
+  if(step===2){ hint.textContent='DELIGHT 2 OF 5 · TAP THE MOON'; $('#moon').classList.add('ready'); }
+  if(step===3){ hint.textContent='DELIGHT 3 OF 5 · A LANTERN IS RISING, TAP IT'; $('#memlan').classList.add('up'); }
+  if(step===4){ hint.textContent='DELIGHT 4 OF 5 · TAP THE FOUR NEW STARS'; document.querySelectorAll('.star').forEach(s=>s.classList.add('show')); }
+  if(step===5){ hint.textContent='DELIGHT 5 OF 5 · STAMP THE PROMISE'; $('#promise').classList.add('on'); }
+  if(step===6){ hint.style.display='none'; $('#dots').classList.remove('on'); finale(); } }
+$('#title').addEventListener('click',()=>{ if(step!==1) return; audio(); const t=$('#title'); t.classList.remove('ready'); duck(.15); play('pun',.9);
+  [...t.children].forEach((s,i)=>setTimeout(()=>{ s.classList.add('on'); },i*90)); setTimeout(()=>[...t.children].forEach(s=>s.classList.remove('on')),1800);
+  const [px,py]=center(t); burst(px,py,30,['#ff6fd8','#ffc56b','#fff']);
+  card('Sam Sambhala! SAMbhala!!!','Gordon\'s favorite pun, and it landed. This whole forest is named after you now.');
+  setTimeout(()=>duck(.45),2500); got(); setTimeout(next,2600); });
+$('#moon').addEventListener('click',()=>{ if(step!==2) return; audio(); const m=$('#moon'); m.classList.remove('ready'); m.classList.add('lit'); duck(.12); play('howl',.9);
+  const [px,py]=center(m); for(let r=0;r<3;r++) setTimeout(()=>burst(px,py,24,['#e8f2ff','#bfe9ff','#fff']),r*350);
+  card('Wolfpack West, howl back!','The pack that made every festival feel like family. Somewhere out there they are howling for you.');
+  setTimeout(()=>duck(.45),3200); got(); setTimeout(next,3300); });
+$('#memlan').addEventListener('click',()=>{ if(step!==3) return; audio(); const l=$('#memlan'); l.classList.add('opened'); l.style.pointerEvents='none'; duck(.15); play('memory',.85);
+  const [px,py]=center(l); burst(px,py,30,['#ffb347','#fff6d0','#ffc56b']);
+  card('2018 · Williamsburg','Where it started, in Brooklyn. Eight years of festivals later, still the same warm light.');
+  setTimeout(()=>{ l.style.transition='bottom 3s ease-in, opacity 3s'; l.style.bottom='110%'; l.style.opacity='0'; duck(.45); },2600); got(); setTimeout(next,3000); });
+let starsGot=0, lastStar=null;
+document.querySelectorAll('.star').forEach(s=>s.addEventListener('click',()=>{ if(step!==4||s.classList.contains('got')) return; audio(); s.classList.add('got'); starsGot++; play('stars',.75,false,.9+starsGot*.08);
+  const lab=document.createElement('div'); lab.className='slabel'; lab.textContent=s.dataset.n; lab.style.left=s.style.left; lab.style.top=s.style.top; $('#labels').appendChild(lab); requestAnimationFrame(()=>lab.classList.add('on'));
+  const p=center(s); if(lastStar) lines.push({a:lastStar,b:p,k:0}); lastStar=p; burst(p[0],p[1],14,['#bfe9ff','#fff']);
+  if(starsGot===4){ card('Your festival family','Four group chats, one constellation. Every one of them is lit up because you are in it.'); got(); setTimeout(()=>{ document.querySelectorAll('.slabel').forEach(l=>l.classList.remove('on')); next(); },3200); } }));
+$('#stampbtn').addEventListener('click',()=>{ if(step!==5) return; audio(); const p=$('#promise'); p.classList.add('stamped'); duck(.15); play('stamp',1);
+  const [px,py]=center(p); burst(px,py,40,['#ff6fd8','#ffc56b','#5fe3d0','#fff']);
+  card('We WILL make it','Your words, July 27. Stamped on your wristband. Gordon is holding you to it, happily.');
+  setTimeout(()=>{ p.classList.remove('on'); duck(.45); },2800); got(); setTimeout(next,3000); });
+function finale(){ $('#sub').textContent='The road to SAMbhala is open.'; const days=Math.ceil((new Date('2027-07-23T12:00:00-07:00')-new Date())/864e5); $('#count').textContent=(days>0? days+' days to go':'It\'s Shambhala time!');
+  play('cheer',.7); for(let k=0;k<8;k++) setTimeout(()=>burst(c.width*(.1+.11*k),c.height*(.25+.08*(k%3)),28,['#ffc56b','#5fe3d0','#ff6fd8','#fff']),k*220);
+  setTimeout(()=>$('#end').classList.add('on'),700); }
+(function loop(now){ x.clearRect(0,0,c.width,c.height); const W=c.width,H=c.height, t=(now||0)/1000;
+  const bright=stage.classList.contains('done')?1:stage.classList.contains('open')?.7:.45;
+  flies.forEach(f=>{ const fx=(f.u+Math.sin(t*f.sp+f.ph)*.03)*W, fy=(f.v+Math.cos(t*f.sp*1.3+f.ph)*.02)*H, a=(.4+.6*Math.abs(Math.sin(t*1.6+f.ph)))*bright;
+    const g=x.createRadialGradient(fx,fy,0,fx,fy,7*D); g.addColorStop(0,`rgba(255,236,150,${a})`); g.addColorStop(1,'rgba(255,236,150,0)'); x.fillStyle=g; x.beginPath(); x.arc(fx,fy,7*D,0,7); x.fill(); });
+  lines.forEach(L=>{ L.k=Math.min(L.k+.04,1); x.strokeStyle='rgba(191,233,255,.85)'; x.lineWidth=2*D; x.shadowColor='#bfe9ff'; x.shadowBlur=10*D; x.beginPath(); x.moveTo(L.a[0],L.a[1]); x.lineTo(L.a[0]+(L.b[0]-L.a[0])*L.k,L.a[1]+(L.b[1]-L.a[1])*L.k); x.stroke(); x.shadowBlur=0; });
+  sparks.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.vy+=.03*D; p.a-=.012; x.globalAlpha=Math.max(p.a,0); x.fillStyle=p.c; x.beginPath(); x.arc(p.x,p.y,2.6*D,0,7); x.fill(); }); x.globalAlpha=1; sparks=sparks.filter(p=>p.a>0);
+  requestAnimationFrame(loop); })();
 </script>
 </body>
 </html>
